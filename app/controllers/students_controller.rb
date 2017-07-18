@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+class StudentsController < OpenReadController
   before_action :set_student, only: [:show, :update, :destroy]
 
   # GET /students
@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
 
   # POST /students
   def create
-    @student = Student.new(student_params)
+    @student = current_user.students.build(student_params)
 
     if @student.save
       render json: @student, status: :created, location: @student
@@ -46,6 +46,6 @@ class StudentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def student_params
-      params.require(:student).permit(:name, :email, :address, :gender, :class, :dob)
+      params.require(:student).permit(:name, :email, :address, :gender, :division, :dob)
     end
 end
