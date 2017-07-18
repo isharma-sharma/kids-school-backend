@@ -17,7 +17,12 @@ class UsersController < ProtectedController
     creds = user_creds
     if (user = User.authenticate creds[:email],
                                  creds[:password])
+      if user.role == creds[:role]
+      puts creds[:role]
       render json: user, serializer: UserLoginSerializer, root: 'user'
+      else
+        head :unauthorized
+      end
     else
       head :unauthorized
     end
