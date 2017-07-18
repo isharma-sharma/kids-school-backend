@@ -3,5 +3,4 @@ class User < ApplicationRecord
   include Authentication
   has_many :examples
   has_many :students
-  has_many :requests
 end
