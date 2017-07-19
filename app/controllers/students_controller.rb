@@ -1,9 +1,9 @@
 class StudentsController < OpenReadController
-  before_action :set_student, only: [:show, :update, :destroy]
+  before_action :set_student, only: [:update, :destroy]
 
   # GET /students
   def index
-    @students = Student.all
+    @students = current_user.students
 
     render json: @students
   end
@@ -48,4 +48,4 @@ class StudentsController < OpenReadController
     def student_params
       params.require(:student).permit(:name, :email, :address, :gender, :division, :dob)
     end
-end
+  end
