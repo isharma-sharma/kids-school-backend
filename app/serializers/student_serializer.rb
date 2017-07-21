@@ -1,3 +1,3 @@
 class StudentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :address, :gender, :class, :dob
+  attributes :id, :name, :email, :address, :gender, :division, :dob
 end
